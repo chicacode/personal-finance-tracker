@@ -42,6 +42,17 @@ def add_transaction(date, category, description, amount):
     print(f"Transaction added: {category} - ${amount}")
 
 
-def load_transaction():
+def load_transactions():
     """Load all transactions from the CSV file."""
-    
+    if os.path.exists(TRANSACTIONS_FILE):
+        return pd.read_csv(TRANSACTIONS_FILE)
+    return pd.DataFrame(columns=["Date", "Category", "Description", "Amount"])
+
+def top_spending_categories(n=3):
+    """Find the top N spending categories."""
+    transactions = load_transactions()
+    if transactions.empty:
+        return {}
+
+    category_spending = transactions.groupby("Category")["Amount"].sum().sort_values(ascending=False)
+    return category_spending.head(n).to_dict()
