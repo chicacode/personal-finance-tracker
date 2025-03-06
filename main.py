@@ -1,5 +1,11 @@
 from visualization import plot_spending_by_category
-from budget_management import set_budget, add_transaction, get_user_transaction
+from budget_management import (
+    set_budget,
+    add_transaction,
+    get_user_transaction,
+    calculate_spending,
+    top_spending_categories
+)
 import pandas as pd
 
 file_path = "sampledata.csv"
@@ -13,7 +19,6 @@ def load_data(file):
 
     # 1️⃣ Set a Monthly Budget
     set_budget(4000)
-
 
     print(data)
 
@@ -33,11 +38,25 @@ def main():
     while True:
         print("\nAdd a new transaction")
         date, category, description, amount, type = get_user_transaction()
+
+        # Update data with new transaction
         data = add_transaction(data, date, category, description, amount, type)
         if data is not None:
             data.to_csv(file_path, index=False)
             print("Transaction added successfully!")
-            # Show updated spending chart
+
+            # ✅ Calculate total spending and remaining budget
+            remaining_budget, total_spent = calculate_spending()
+            print(f"\n💰 Total Spent: ${total_spent:.2f}")
+            print(f"🟢 Remaining Budget: ${remaining_budget:.2f}")
+
+            # ✅ Display Top Spending Categories
+            top_categories = top_spending_categories()
+            print("\n🔥 Top Spending Categories:")
+            for cat, amount in top_categories.items():
+                print(f"- {cat}: ${amount:.2f}")
+
+            # ✅ Visualize spending
             plot_spending_by_category(data)
         else:
             print("Error: Transaction could not be added.")
