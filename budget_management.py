@@ -1,5 +1,4 @@
 import os.path
-from unicodedata import category
 
 import pandas as pd
 
@@ -47,6 +46,26 @@ def load_transactions():
     if os.path.exists(TRANSACTIONS_FILE):
         return pd.read_csv(TRANSACTIONS_FILE)
     return pd.DataFrame(columns=["Date", "Category", "Description", "Amount"])
+
+def get_user_transaction():
+    date = input("Enter the date (YYYY-MM-DD): ")
+    category = input("Enter the category: ")
+    description = input("Enter the description: ")
+    amount = float(input("Enter the amount: "))
+    return date, category, description, amount
+
+# Analyzing Spending
+def calculate_spending():
+    """Calculate total spending and remaining budget."""
+    budget = load_budget()
+    transactions = load_transactions()
+
+    if transactions.empty:
+        return budget, 0
+
+    total_spent = transactions["Amount"].sum()
+    remaining_budget = budget - total_spent
+    return remaining_budget, total_spent
 
 def top_spending_categories(n=3):
     """Find the top N spending categories."""
