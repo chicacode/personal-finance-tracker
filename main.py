@@ -4,7 +4,6 @@ import pandas as pd
 
 file_path = "sampledata.csv"
 
-
 def load_data(file):
     """Load transactions from a CSV file, or create an empty DataFrame if missing."""
     try:
@@ -20,9 +19,9 @@ def load_data(file):
 
     # 2️⃣ Add Transactions
     for date, category, description, amount, type in [
-        ("2025-02-27", "Entertainment", "Movie", 15.00, "Entertainment"),
-        ("2025-03-05", "Food", "Lunch", 32.50, "Restaurant"),
-        ("2025-03-06", "Transport", "Compass Ticket", 105.00,  "Expense")
+        ("2025-02-27", "Entertainment", "Movie", 15.00, "Expenses"),
+        ("2025-03-05", "Food", "Lunch", 32.50, "Expenses"),
+        ("2025-03-06", "Transport", "Compass Ticket", 105.00,  "Expenses")
     ]:
         data = add_transaction(date, category, description, amount, type)
 
@@ -46,7 +45,6 @@ def main():
         next_transaction = input("Do you want to add another transaction? (yes/no): ").strip().lower()
         if next_transaction != 'yes':
             break
-
 
 if __name__ == "__main__":
     main()

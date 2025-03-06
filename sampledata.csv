@@ -34,3 +34,5 @@ Date,Category,Description,Amount,Type
 2025-03-05,Food,Lunch,32.5,Restaurant
 2025-03-06,Transport,Compass Ticket,105.0,Expense
 2025-03-03,gym,run,30.0,fitness
+2025-03-03,Groceries,Food,30.0,Lunch
+2025-03-03,Food,Lunch,40.0,Expenses
