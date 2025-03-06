@@ -1,5 +1,4 @@
 import os.path
-
 import pandas as pd
 
 BUDGET_FILE = "budget.csv"
@@ -22,37 +21,38 @@ def load_budget():
 
 # Tracking Expenses
 
-def add_transaction(date, category, description, amount):
+def add_transaction(df, date, category, description, amount, type):
     """Add transaction to CSV File."""
-    transaction = pd.DataFrame({
-        "Date": [date],
-        "Category": [category],
-        "Description": [description],
-        "Amount": [amount]
-    })
+    new_transaction = pd.DataFrame(  [[date, category, description, amount, type]],
+        columns=["Date", "Category", "Description", "Amount", "Type"])
+
+    df = pd.concat([df, new_transaction], ignore_index=True)
 
     if os.path.exists(TRANSACTIONS_FILE):
         data = pd.read_csv(TRANSACTIONS_FILE)
-        data = pd.concat([data, transaction], ignore_index=True)
+        data = pd.concat([data, new_transaction], ignore_index=True)
     else:
-        data = transaction
+        data = new_transaction
 
+    # Save to CSV
     data.to_csv(TRANSACTIONS_FILE, index=False)
     print(f"Transaction added: {category} - ${amount}")
 
+    return df
 
 def load_transactions():
     """Load all transactions from the CSV file."""
     if os.path.exists(TRANSACTIONS_FILE):
         return pd.read_csv(TRANSACTIONS_FILE)
-    return pd.DataFrame(columns=["Date", "Category", "Description", "Amount"])
+    return pd.DataFrame(columns=["Date", "Category", "Description", "Amount", "Type"])
 
 def get_user_transaction():
     date = input("Enter the date (YYYY-MM-DD): ")
     category = input("Enter the category: ")
     description = input("Enter the description: ")
     amount = float(input("Enter the amount: "))
-    return date, category, description, amount
+    type = input("Enter the transaction type: ")
+    return date, category, description, amount, type
 
 # Analyzing Spending
 def calculate_spending():
