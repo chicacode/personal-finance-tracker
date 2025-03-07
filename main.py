@@ -21,13 +21,14 @@ load_data(file_path)
 # 1️⃣ Set a Monthly Budget
 set_budget(4000)
 
+data = load_data(file_path)
 # 2️⃣ Add Transactions
-for date, category, description, amount, type in [
+for date, category, description, amount, typetrans in [
     ("2025-02-27", "Entertainment", "Movie", 15.00, "Expenses"),
     ("2025-03-05", "Food", "Lunch", 32.50, "Expenses"),
-    ("2025-03-06", "Transport", "Compass Ticket", 105.00,  "Expenses")
+    ("2025-03-06", "Transport", "Compass Ticket", 105.00, "Expenses")
 ]:
-    data = add_transaction(date, category, description, amount, type)
+    data = add_transaction(date, category, description, amount, typetrans)
 
 # Save initial transactions
 data.to_csv(file_path, index=False)
@@ -54,10 +55,10 @@ def main():
                     data.to_csv(file_path, index=False)
                     print("Transaction added successfully!")
                     add_tran(data)
-                    date, category, description, amount, type = get_user_transaction()
+                    date, category, description, amount, typetrans = get_user_transaction()
 
                     # Update data with new transaction
-                    data = add_transaction(data, date, category, description, amount, type)
+                    data = add_transaction(data, date, category, description, amount, typetrans)
                 else:
                     print("Error: Transaction could not be added.")
             elif user_choice == '4':

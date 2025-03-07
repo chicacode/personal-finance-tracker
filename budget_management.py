@@ -21,10 +21,10 @@ def load_budget():
 
 # Tracking Expenses
 
-def add_transaction(df, date, category, description, amount, type):
+def add_transaction(df, date, category, description, amount, typetrans):
     """Add transaction to CSV File."""
-    new_transaction = pd.DataFrame(  [[date, category, description, amount, type]],
-        columns=["Date", "Category", "Description", "Amount", "Type"])
+    new_transaction = pd.DataFrame([[date, category, description, amount, typetrans]],
+                                   columns=["Date", "Category", "Description", "Amount", "Type"])
 
     df = pd.concat([df, new_transaction], ignore_index=True)
 
@@ -51,8 +51,8 @@ def get_user_transaction():
     category = input("Enter the category: ")
     description = input("Enter the description: ")
     amount = float(input("Enter the amount: "))
-    type = input("Enter the transaction type: ")
-    return date, category, description, amount, type
+    typetrans = input("Enter the transaction type: ")
+    return date, category, description, amount, typetrans
 
 # Analyzing Spending
 def calculate_spending():
