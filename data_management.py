@@ -3,9 +3,12 @@ import datetime
 
 file_path = "sampledata.csv"
 
-def load_data(file_path):
-    """Load transactions from a CSV file."""
-    return pd.read_csv(file_path)
+def load_data(file):
+    """Load transactions from a CSV file, or create an empty DataFrame if missing."""
+    try:
+        return pd.read_csv(file)
+    except FileNotFoundError:
+        return pd.DataFrame(columns=["Date", "Category", "Description", "Amount", "Type"])
 
 # 1️⃣ View All Transactions
 def view_data(data):
