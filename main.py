@@ -22,16 +22,7 @@ load_data(file_path)
 set_budget(4000)
 
 data = load_data(file_path)
-# 2️⃣ Add Transactions
-for date, category, description, amount, typetrans in [
-    ("2025-02-27", "Entertainment", "Movie", 15.00, "Expenses"),
-    ("2025-03-05", "Food", "Lunch", 32.50, "Expenses"),
-    ("2025-03-06", "Transport", "Compass Ticket", 105.00, "Expenses")
-]:
-    data = add_transaction(date, category, description, amount, typetrans)
-
-# Save initial transactions
-data.to_csv(file_path, index=False)
+print(data)
 
 def main():
     data = load_data(file_path)
@@ -67,17 +58,18 @@ def main():
                 edit_tran(data)
             elif user_choice == '6':
                 # ✅ Calculate total spending and remaining budget
+                # Analyze Spending by Category
                 remaining_budget, total_spent = calculate_spending()
                 print(f"\n💰 Total Spent: ${total_spent:.2f}")
                 print(f"🟢 Remaining Budget: ${remaining_budget:.2f}")
             elif user_choice == '7':
+                print('opition 7')
+            elif user_choice == '8':
                 # ✅ Display Top Spending Categories
                 top_categories = top_spending_categories()
                 print("\n🔥 Top Spending Categories:")
                 for cat, amount in top_categories.items():
                     print(f"- {cat}: ${amount:.2f}")
-            elif user_choice == '8':
-                print('opition 8')
             elif user_choice == '9':
                 # ✅ Visualize spending
                 plot_spending_by_category(data)
