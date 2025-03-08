@@ -10,16 +10,18 @@ from budget_management import (
 )
 
 from data_management import (
-    load_data, view_data, date_range, add_tran, edit_tran
+    load_data, view_data, date_range, add_tran, edit_tran, delete_transaction
 )
-
+from data_analyze import (
+analyze_spending, average_monthly_spending, save_to_csv
+)
 # CSV
 file_path = "sampledata.csv"
 
 load_data(file_path)
 
 # 1️⃣ Set a Monthly Budget
-set_budget(4000)
+BUDGET = 4000
 
 data = load_data(file_path)
 print(data)
@@ -44,7 +46,7 @@ def main():
                 print("\nAdd a new transaction")
                 if data is not None:
                     data.to_csv(file_path, index=False)
-                    print("Transaction added successfully!")
+
                     add_tran(data)
                     date, category, description, amount, typetrans = get_user_transaction()
 
@@ -53,9 +55,11 @@ def main():
                 else:
                     print("Error: Transaction could not be added.")
             elif user_choice == '4':
+                # Update transaction
                 edit_tran(data)
             elif user_choice == '5':
-                edit_tran(data)
+                # Delete transaction
+                delete_transaction(data)
             elif user_choice == '6':
                 # ✅ Calculate total spending and remaining budget
                 # Analyze Spending by Category
@@ -63,7 +67,11 @@ def main():
                 print(f"\n💰 Total Spent: ${total_spent:.2f}")
                 print(f"🟢 Remaining Budget: ${remaining_budget:.2f}")
             elif user_choice == '7':
-                print('opition 7')
+               # Calculate Average Monthly Spending
+                if data is not None and not data.empty:
+                    average_monthly_spending(data)
+                else:
+                    print("No transactions found.")
             elif user_choice == '8':
                 # ✅ Display Top Spending Categories
                 top_categories = top_spending_categories()
@@ -74,23 +82,21 @@ def main():
                 # ✅ Visualize spending
                 plot_spending_by_category(data)
             elif user_choice == '10':
-                print('opition 10')
+                # Set Budget
+                set_budget(BUDGET)
             elif user_choice == '11':
-                print('opition 11')
+                # Save transaction
+                date, category, description, amount, typetrans = get_user_transaction()
+
+                # Update data with new transaction
+                data = add_transaction(data, date, category, description, amount, typetrans)
             elif user_choice == '12':
-                print('opition 12')
-            elif user_choice == '13':
-                print('opition 13')
-            elif user_choice == '14':
                 print("Exiting the Personal Finance Tracker. Goodbye!")
                 break  # Exit the program
 
         else:
             print("\033[31mInvalid choice! Please, try again.\033[0m")
 
-        next_transaction = input("Do you want to add another transaction? (yes/no): ").strip().lower()
-        if next_transaction != 'yes':
-            break
 
 if __name__ == "__main__":
     main()

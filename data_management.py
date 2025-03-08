@@ -184,3 +184,22 @@ def edit_tran(data):
     data.at[enter, 'Type'] = new_type
 
     print("\033[32mTransaction updated successfully!\033[0m")
+
+# Delete transaction
+def delete_transaction(data):
+    """Delete a transaction by index."""
+    while True:
+        try:
+            enter = int(input("Enter the index of the transaction to delete: "))
+            if enter < 0 or enter >= len(data):  # ✅ Fixed index validation
+                print("\033[31mInvalid index. Please enter again.\033[0m")
+                continue
+            break
+        except ValueError:
+            print("\033[31mInvalid input. Please enter a number.\033[0m")
+
+    # ✅ Correctly drop the row and reset index
+    data = data.drop(index=enter).reset_index(drop=True)
+    print("\033[32mTransaction deleted successfully!\033[0m")
+
+    return data

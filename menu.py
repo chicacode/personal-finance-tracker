@@ -10,11 +10,9 @@ def main_menu():
             6. Analyze Spending by Category
             7. Calculate Average Monthly Spending
             8. Show Top Spending Category
-            9. Set Monthly Income
-            10. Set Category Budget
-            11. Check Budget Status
-            12. Visualize Spending Trends
-            13. Save Transactions to CSV
-            14. Exit
-            Choose an option (1-14):
+            9. Visualize spending
+            10. Set Budget
+            11. Save transaction to CSV
+            12. Exit
+            Choose an option (1-12):
         """)

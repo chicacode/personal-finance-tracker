@@ -39,3 +39,6 @@ Date,Category,Description,Amount,Type
 2025-03-03,food,lunch,50.0,Expenses
 2025-03-03,food,lunch,50.0,expenses
 2025-03-03,food,food,50.0,expenses
+2025-03-05,Food,des,30.0,1
+2025-03-02,Flight,Flight to Spain,300.0,Expenses
+2025-03-03,Des,des,2000.0,1
