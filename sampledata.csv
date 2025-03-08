@@ -13,3 +13,32 @@ Date,Category,Description,Amount,Type
 2024-10-20,Income,Investment Return,200.0,Income
 2024-10-25,Food,Groceries,80.0,Expense
 2024-10-28,Rent,Monthly Rent,1200.0,Expense
+2025-02-27,Entertainment,Movie,15.0,
+2025-03-05,Food,Lunch,32.5,
+2025-03-06,Transport,Compass Ticket,105.0,
+2025-03-03,gym,running club,50.0,
+2025-02-27,Entertainment,Movie,15.0,
+2025-03-05,Food,Lunch,32.5,
+2025-03-06,Transport,Compass Ticket,105.0,
+2025-03-03,gym,run,40.0,
+2025-02-27,Entertainment,Movie,15.0,
+2025-03-05,Food,Lunch,32.5,
+2025-03-06,Transport,Compass Ticket,105.0,
+2025-02-27,Entertainment,Movie,15.0,
+2025-03-05,Food,Lunch,32.5,
+2025-03-06,Transport,Compass Ticket,105.0,
+2025-02-27,Entertainment,Movie,15.0,
+2025-03-05,Food,Lunch,32.5,
+2025-03-06,Transport,Compass Ticket,105.0,
+2025-02-27,Entertainment,Movie,15.0,Entertainment
+2025-03-05,Food,Lunch,32.5,Restaurant
+2025-03-06,Transport,Compass Ticket,105.0,Expense
+2025-03-03,gym,run,30.0,fitness
+2025-03-03,Groceries,Food,30.0,Lunch
+2025-03-03,Food,Lunch,40.0,Expenses
+2025-03-03,food,lunch,50.0,Expenses
+2025-03-03,food,lunch,50.0,expenses
+2025-03-03,food,food,50.0,expenses
+2025-03-05,Food,des,30.0,1
+2025-03-02,Flight,Flight to Spain,300.0,Expenses
+2025-03-03,Des,des,2000.0,1
